@@ -1,0 +1,10 @@
+name: astrbot_plugin_music_pro
+display_name: 点歌插件Pro
+desc: 网易云nodejs点歌插件
+version: v1.2.0
+author: 一只小白
+repo: https://github.com/onexb/astrbot_plugin_music_pro
+support_platforms: 
+    - aiocqhttp
+    - qq_official
+social_link: https://github.com/onexb

@@ -1,0 +1,8 @@
+{
+    "nodejs_base_url": {
+        "description": "nodejs服务的api根地址",
+        "hint": "此项配置决定nodejs服务api的根地址",
+        "type": "string",
+        "default": "http://139.9.223.233:3000"
+    }
+}
