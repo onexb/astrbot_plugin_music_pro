@@ -15,7 +15,7 @@ from .core.music_api import MusicAPI
 from .core.card_signer import CardSigner
 
 
-@register("music_pro", "一只小白", "点歌插件Pro", "v1.2.0")
+@register("music_pro", "一只小白", "点歌插件Pro", "v1.2.1")
 class MusicPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
