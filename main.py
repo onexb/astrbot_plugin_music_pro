@@ -6,6 +6,7 @@ from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 from astrbot.api.message_components import Plain
 from astrbot.core.message.components import Record
+from astrbot.core.config.astrbot_config import AstrBotConfig
 from astrbot.core.utils.session_waiter import (
     SessionController,
     session_waiter,
@@ -15,15 +16,17 @@ from .core.music_api import MusicAPI
 from .core.card_signer import CardSigner
 
 
-@register("music_pro", "一只小白", "点歌插件Pro", "v1.2.1")
+@register("music_pro", "一只小白", "点歌插件Pro", "v1.3.0")
 class MusicPlugin(Star):
-    def __init__(self, context: Context):
+          
+    def __init__(self, context: Context, config: AstrBotConfig):
         super().__init__(context)
-        cfg = context.get_config() or {}
-        base_url = cfg.get("nodejs_base_url", "http://139.9.223.233:3000")
-
+        self.cfg = config
+        base_url = config.get("nodejs_base_url", "")
+    
         self.music = MusicAPI(base_url)
         self.signer = CardSigner()
+    
 
     async def terminate(self):
         await self.music.close()
@@ -44,7 +47,7 @@ class MusicPlugin(Star):
         # 通过 meting API 获取封面
         cover = await self.music.get_cover(song["id"])
 
-        # ===== CZ-API 签名 → json 段发 Ark =====
+        # ===== 签名 → json 段发 Ark =====
         from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import (
             AiocqhttpMessageEvent,
         )
@@ -62,7 +65,7 @@ class MusicPlugin(Star):
                     type_="163",
                 )
                 
-                if card and card.get("view") == "music":
+                if card:
                     payloads = {
                         "message": [
                             {
@@ -168,7 +171,7 @@ class MusicPlugin(Star):
                     image=cover,
                     type_="163",
                 )
-                if card and card.get("view") == "music":
+                if card:
                     payloads = {
                         "message": [
                             {

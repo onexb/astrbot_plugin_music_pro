@@ -1,7 +1,7 @@
 name: astrbot_plugin_music_pro
 display_name: 点歌插件Pro
 desc: 网易云nodejs点歌插件
-version: v1.2.1
+version: v1.3.0
 author: 一只小白
 repo: https://github.com/onexb/astrbot_plugin_music_pro
 support_platforms: 

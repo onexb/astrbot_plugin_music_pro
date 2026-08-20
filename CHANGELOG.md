@@ -1,5 +1,19 @@
 # 更新日志
 
+## v1.3.0 (2026-08-20)
+
+### 新增
+- 新增 OIAPI 签名通道，优先使用 `oiapi.net` 生成 Ark 卡片，失败自动回退 CZ-API
+- 插件配置改为官方推荐的 `AstrBotConfig` 注入方式
+
+### 优化
+- 简化卡片有效性判断，`sign` 方法内部已校验 `view == "music"`，外部只需判断返回值是否为 `None`
+- 移除 `CardSigner` 中无用的 `_session` 连接池管理
+
+### 修复
+- 修复插件配置读取方式，改为从 `AstrBotConfig` 获取而非 `context.get_config()`
+
+
 ## v1.2.1 (2026-08-19)
 
 ### 修复
